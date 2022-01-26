@@ -29,7 +29,15 @@
                                 <address>{{meet.location}}</address>
                             </div>
                         </div>
-                        <div class="meetup-actions"><a href="" class="btn">More Details</a></div>
+                        <div class="meetup-actions">
+                            {% comment %}
+                            create url link to detail view using meet's slug 
+                            use {% url '<name>'%} tag where name is from urls.py 
+                            don't need to {% load %} url tag, unlike static
+                            pass data for any dynamic segments in order
+                            {% endcomment %}
+                            <a href="{% url 'detail' meet.slug %} " class="btn">More Details</a>
+                        </div>
                     </article></li>
                 {% endfor %}
             </ol>

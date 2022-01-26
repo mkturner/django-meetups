@@ -16,5 +16,5 @@ urlpatterns = [
     # <> means dynamic data passed into url path
     # <slug: [name]> makes it conform to slug pattern
     # make sure to pass slug [name] to view function
-    path('meets/<slug:meet_slug>', views.details, name="details"), # <domain>/meets/<dynamic-path>
+    path('meets/<slug:meet_slug>', views.details, name="detail"), # <domain>/meets/<dynamic-path>
 ]
