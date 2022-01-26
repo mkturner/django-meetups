@@ -1,0 +1,27 @@
+{% comment %} base template to be extended by other pages {% endcomment %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'meets/css/base.css' %}">
+    {% block page_css %}{% endblock page_css %}
+    {% comment %}
+    block tag allows to define segments that will have different data 
+    on different pages. Default value is between tags, shown if not extended
+    {% endcomment %}
+    <title>{% block title %}Dev Meets{% endblock title %}</title>
+</head>
+<body>
+    <header id="main-header">
+        <nav><a href="" id="main-logo">Dev Meets</a></nav>
+        <h1>{% block main_heading %}{% endblock main_heading %}</h1>
+        {% block header_content %}{% endblock header_content %}
+    </header>
+    <main>
+        {% block body %}{% endblock body %}
+    </main>
+</body>
+</html>

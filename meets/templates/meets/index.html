@@ -1,47 +1,44 @@
+{% extends 'meets/base/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'meets/css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'meets/css/all-meetups.css' %}">
-    <title>All Meetups</title>
-</head>
-<body>
-    <header id="main-header">
-        <nav><a href="" id="main-logo">Dev Meets</a></nav>
-        <h1>There are great meetups happening soon & More posted everyday!</h1>
-    </header>
-    <main>
-        <section>
-            <h2>Upcoming Meetups</h2>
-            <ol>
-                {% for meet in meet_list %}
-                    <li class="meetup-item"><article>
-                        <div class="meetup-summary">
-                            <div class="meetup-image">
-                                <img src="" alt="">
-                            </div>
-                            <div class="meetup-details">
-                                <h3>{{meet.title}}</h3>
-                                <address>{{meet.location}}</address>
-                            </div>
-                        </div>
-                        <div class="meetup-actions">
-                            {% comment %}
-                            create url link to detail view using meet's slug 
-                            use {% url '<name>'%} tag where name is from urls.py 
-                            don't need to {% load %} url tag, unlike static
-                            pass data for any dynamic segments in order
-                            {% endcomment %}
-                            <a href="{% url 'detail' meet.slug %} " class="btn">More Details</a>
-                        </div>
-                    </article></li>
-                {% endfor %}
-            </ol>
-        </section>
-    </main>
-</body>
-</html>
+
+{% block title %}All Meetups{% endblock title %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'meets/css/all-meetups.css' %}">
+{% endblock page_css %}
+
+{% block main_heading %}There are great meetups happening soon & More posted everyday!{% endblock main_heading %}
+
+{% block header_content %}
+<p>Find something that suits your interests!</p>
+{% endblock header_content %}
+
+{% block body %}
+<section>
+    <h2>Upcoming Meetups</h2>
+    <ol>
+        {% for meet in meet_list %}
+            <li class="meetup-item"><article>
+                <div class="meetup-summary">
+                    <div class="meetup-image">
+                        <img src="" alt="">
+                    </div>
+                    <div class="meetup-details">
+                        <h3>{{meet.title}}</h3>
+                        <address>{{meet.location}}</address>
+                    </div>
+                </div>
+                <div class="meetup-actions">
+                    {% comment %}
+                    create url link to detail view using meet's slug 
+                    use {% url '<name>'%} tag where name is from urls.py 
+                    don't need to {% load %} url tag, unlike static
+                    pass data for any dynamic segments in order
+                    {% endcomment %}
+                    <a href="{% url 'detail' meet.slug %} " class="btn">More Details</a>
+                </div>
+            </article></li>
+        {% endfor %}
+    </ol>
+</section>
+{% endblock body %}
