@@ -18,26 +18,8 @@
     <h2>Upcoming Meetups</h2>
     <ol>
         {% for meet in meet_list %}
-            <li class="meetup-item"><article>
-                <div class="meetup-summary">
-                    <div class="meetup-image">
-                        <img src="" alt="">
-                    </div>
-                    <div class="meetup-details">
-                        <h3>{{meet.title}}</h3>
-                        <address>{{meet.location}}</address>
-                    </div>
-                </div>
-                <div class="meetup-actions">
-                    {% comment %}
-                    create url link to detail view using meet's slug 
-                    use {% url '<name>'%} tag where name is from urls.py 
-                    don't need to {% load %} url tag, unlike static
-                    pass data for any dynamic segments in order
-                    {% endcomment %}
-                    <a href="{% url 'detail' meet.slug %} " class="btn">More Details</a>
-                </div>
-            </article></li>
+            {% comment %} Pass named values expected by include partial {% endcomment %}
+            {% include 'meets/includes/meet-item.html' with title=meet.title location=meet.location %}
         {% endfor %}
     </ol>
 </section>
