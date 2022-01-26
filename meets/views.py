@@ -24,3 +24,19 @@ def index(request):
         'meet_list': meets,
         'show_meetups': True
     })
+
+# detail view for specific meetup
+def details(request, meet_slug):
+    # mock data
+    specific_meet = {
+            'title': 'PyATL',
+            'location': 'Atlanta',
+            'description': "PyAtl meets every month in Atlanta for presentations and discussion about Python, the powerful and easy-to-use programming language. Every meeting tries to include something for beginners, and also to tackle advanced topics for seasoned developers. We are all learning, so don't be shy about attending, no matter your experience level!",
+            'slug': 'atlanta-pyatl'
+        }
+
+    return render(request, 'meets/detail.html', {
+        'title': specific_meet['title'],
+        'description': specific_meet['description'],
+        'location': specific_meet['location']
+    })

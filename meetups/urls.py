@@ -18,5 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # load all urls from meets app
     path('', include('meets.urls')),
 ]
