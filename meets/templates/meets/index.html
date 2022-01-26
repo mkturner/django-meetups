@@ -11,5 +11,13 @@
 <body>
     <h1>All Meetups!</h1>
     <p>Hello World!</p>
+    {% comment %} Indentation for readability only, does not matter to template {% endcomment %}
+    {% if show_meetups %}
+        {% for meet in meet_list %}
+            <p>{{ meet.title }}</p>
+        {% endfor %}
+    {% else %}
+    <p>No meetups found!</p>
+    {% endif %}
 </body>
 </html>
