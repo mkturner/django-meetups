@@ -19,7 +19,7 @@
     <ol>
         {% for meet in meet_list %}
             {% comment %} Pass named values expected by include partial {% endcomment %}
-            {% include 'meets/includes/meet-item.html' with title=meet.title location=meet.location %}
+            {% include 'meets/includes/meet-item.html' with title=meet.title location=meet.location slug=meet.slug %}
         {% endfor %}
     </ol>
 </section>

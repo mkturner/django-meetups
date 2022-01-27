@@ -1,42 +1,42 @@
 from django.shortcuts import render
 
+# import models
+from .models import Meet
+
 # Create your views here.
 
 def index(request):
-    # mock data until models up
-    meets = [
-        {
-            'title': 'PyATL',
-            'location': 'Atlanta',
-            'slug': 'atlanta-pyatl'
-        },
-        {
-            'title': 'BrooklynJS',
-            'location': 'New York City',
-            'slug': 'newyorkcity-brooklynjs'
-        }
-    ]
+    # pull data from model
+    # <model>.objects.all() call will get all objects
+    meets = Meet.objects.all()
 
     # render accepts dictionary (key-value pair) as 3rd argument
     # key = name exposed in HTML template
     # value = python data to expose in template
     return render(request, 'meets/index.html', {
-        'meet_list': meets,
-        'show_meetups': True
+        'meet_list': meets, 
     })
 
 # detail view for specific meetup
 def details(request, meet_slug):
-    # mock data
-    specific_meet = {
-            'title': 'PyATL',
-            'location': 'Atlanta',
-            'description': "PyAtl meets every month in Atlanta for presentations and discussion about Python, the powerful and easy-to-use programming language. Every meeting tries to include something for beginners, and also to tackle advanced topics for seasoned developers. We are all learning, so don't be shy about attending, no matter your experience level!",
-            'slug': 'atlanta-pyatl'
-        }
+    # <model>.objects.get() will fetch a single instace from DB
+    # in this case, fetch the meet with a slug that matches this page's slug
+    # slug is passed to view function from urls.py
+    # return error if something goes wrong
+    try:
+        specific_meet = Meet.objects.get(slug=meet_slug)
 
-    return render(request, 'meets/detail.html', {
-        'title': specific_meet['title'],
-        'description': specific_meet['description'],
-        'location': specific_meet['location']
-    })
+        return render(request, 'meets/detail.html', {
+            # expose meet's values to template using context
+            'title': specific_meet.title,
+            'description': specific_meet.description,
+            'location': specific_meet.location,
+            'meet_found': True
+        })
+    except Exception as e:
+        print(e)
+        return render(request, 'meets/detail.html', {
+            'error': e,
+            'slug': meet_slug,
+            'meet_found': False
+        })

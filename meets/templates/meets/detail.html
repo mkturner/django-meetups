@@ -9,11 +9,10 @@
 
 {% block main_heading %}{{title}}{% endblock main_heading %}
 
-{% block header_content %}
-<p>Find something that suits your interests!</p>
-{% endblock header_content %}
-
 {% block body %}
+
+{% if meet_found %}
+
 <article>
     <img src="" alt="">
     <section id="location">
@@ -35,4 +34,17 @@
         {% comment %} TODO: FORM {% endcomment %}
     </section>
 </article>
+
+{% else %}
+
+<article>
+    <section id="description">
+        <p>Sorry! Not a valid url.</p>
+        <p>The path <em>{{slug}}</em> gives following error: {{error}}</p>
+        <p>Make sure you entered the right URL and try again. If problem persists, the meet may no longer exist.</p>
+    </section>
+</article>
+
+{% endif %}
+
 {% endblock body %}

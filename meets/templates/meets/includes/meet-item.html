@@ -10,7 +10,8 @@
             {% endcomment %}
             <div class="meetup-details">
                 <h3>{{title}}</h3>
-                <address>{{location}}</address>
+                {% comment %} use default filter in case no location {% endcomment %}
+                <address>{{location|default:'Somewhere'}}</address>
             </div>
         </div>
         <div class="meetup-actions">
@@ -20,7 +21,7 @@
             don't need to {% load %} url tag, unlike static
             pass data for any dynamic segments in order
             {% endcomment %}
-            <a href="{% url 'detail' meet.slug %} " class="btn">More Details</a>
+            <a href="{% url 'detail' slug %} " class="btn">More Details</a>
         </div>
     </article>
 </li>
