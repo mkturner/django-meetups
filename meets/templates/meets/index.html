@@ -18,8 +18,12 @@
     <h2>Upcoming Meetups</h2>
     <ol>
         {% for meet in meet_list %}
+            {% comment %} wrap using with tag to prevent long lines {% endcomment %}
+            {% comment %} ImageField exposes <object>.<image_property>.url autmatically as convenience {% endcomment %}
+            {% with title=meet.title location=meet.location slug=meet.slug image=meet.image.url %}
             {% comment %} Pass named values expected by include partial {% endcomment %}
-            {% include 'meets/includes/meet-item.html' with title=meet.title location=meet.location slug=meet.slug %}
+            {% include 'meets/includes/meet-item.html' %}
+            {% endwith %}
         {% endfor %}
     </ol>
 </section>

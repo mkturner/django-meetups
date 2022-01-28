@@ -25,6 +25,14 @@ class Meet(models.Model):
 
     location = models.CharField(max_length=64)
 
+    # ImageField allows uploading uploading images
+    # Django will upload the image and store the path for you
+    # Does not store the blob in db
+    # 'upload_to=<folder>' param tells Django path to store images under
+    # this functionality has a dependency on Pillow, verify it is installed!
+    # also, set MEDIA_ROOT, MEDIA_URL in settings.py
+    image = models.ImageField(upload_to='images')
+
     # important to define dunder str, will be used in admin site
     def __str__(self):
         return f"{self.title} meetup"

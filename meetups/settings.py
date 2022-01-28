@@ -125,3 +125,14 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# For images
+# MEDIA_ROOT tells specific path where media will be stored
+
+# str concatenation
+MEDIA_ROOT = BASE_DIR / 'uploads'
+
+# url where django will be serving these files
+MEDIA_URL = '/files/'
+
+# MUST ALSO CONFIGURE MASTER urls.py TO SERVE <MEDIA_URL>
